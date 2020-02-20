@@ -142,8 +142,8 @@ button:hover {
     }
 
     button {
-        font-size: 40px;
-        padding: 25px 35px;
+        font-size: 30px;
+        padding: 20px 3px;
         display: block;
         margin: 30px auto;
     }
