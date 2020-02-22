@@ -168,9 +168,11 @@
  submitBtn.addEventListener("click", getWord);
  var newGameBtn = document.getElementById("new-game-btn");
  newGameBtn.addEventListener("click", restartGame);
- var gameRules = document.getElementById("game-rules");
+ var gameRules = document.getElementById("game-rules-cloud");
  gameRules.addEventListener("click", showHideRules);
  var randomLetters = [];
+ var selectedLetter = "";
+ var timerCounter = 0;
  var lettersOnBoardArr = [];
  var currentWord = [];
  var currentScoreArr = [];
@@ -180,7 +182,7 @@
  var seconds = 0,
      minutes = 0,
      hours = 0;
- var t;
+ var time;
  var totalScore = document.getElementById("total-score");
  var randomAlerts = ["Never heard of such a word..", "Are you making up new words?", "Dude, you cannot fool a computer.."];
  var myRequest = new Request("https://gist.githubusercontent.com/jesseditson/1e6b2b524814320515ccfe7e2f856eda/raw/17d61fa1e80e14b13c4525b09f84148772586b59/words.json");
@@ -223,7 +225,7 @@
      table.appendChild(tbody);
      left.insertBefore(table, tilesContainer);
      table.addEventListener("click", function (e) {
-         if (e.target.textContent != '') {
+         if (e.target.textContent != "") {
              lettersOnBoardArr.push(e.target.textContent);
          }
      })
@@ -246,30 +248,52 @@
          letterHolder.appendChild(ul);
          randomLetters.push(letter);
      }
+
+     if (timerCounter === 0) {
+         timerStart();
+         timerCounter++;
+     }
+
      getLettersOnBoard();
  }
 
-
- //Place letters on board with click event//
  function getLettersOnBoard() {
      randomLetters.forEach(function (randomLetter) {
          randomLetter.addEventListener("click", function () {
-             randomLetter.classList.add("selected");
-             table.addEventListener("click", function selectedLetterOnBoard(e) {
-                 e.target.classList.remove("brain-icon");
-                 e.target.classList.add("letter-on-board");
-                 e.target.innerHTML = randomLetter.innerHTML;
-                 randomLetter.style.display = "none";
-                 table.removeEventListener("click", selectedLetterOnBoard);
-             })
-             lettersOnBoardArr.push(randomLetter.textContent);
+             if (randomLetter.classList.contains("selected")) {
+                 randomLetter.classList.remove("selected");
+                 selectedLetter = "";
+             } else {
+                 randomLetter.classList.add("selected");
+                 selectedLetter = randomLetter;
+             }
          })
-
      })
+ }
+
+ table.addEventListener("click", function (e) {
+     selectedLetterOnBoard(e, selectedLetter);
+     lettersOnBoardArr.push(selectedLetter.textContent);
+     selectedLetter = "";
+ });
+
+ function selectedLetterOnBoard(e, letter) {
+     if (letter != "") {
+         e.target.classList.remove("brain-icon");
+         e.target.classList.add("letter-on-board");
+         e.target.innerHTML = letter.innerHTML;
+         letter.style.display = "none";
+         table.removeEventListener("click", selectedLetterOnBoard);
+     }
  }
 
  //takes word from the board after submit button was clicked and checks if submitted word is correct
  function getWord() {
+
+     lettersOnBoardArr = lettersOnBoardArr.filter(function (x) {
+         return x !== undefined;
+     });
+
      lettersOnBoardArr.forEach(function (item) {
          currentWord.push(item.slice(0, 1));
          currentScoreArr.push(item.slice(1, 3));
@@ -282,7 +306,6 @@
          swal(currentWordJoined.toUpperCase() + "?", randomAlerts[randomNum]);
      }
      totalScore.innerHTML = `SCORE: <br> ${currentScore}`;
-     totalScore.style.display = "block";
      currentScoreArr = [];
      lettersOnBoardArr = [];
      currentWord = [];
@@ -304,21 +327,19 @@
  }
 
  function timerStart() {
-     t = setTimeout(addTime, 1000);
+     time = setTimeout(addTime, 1000);
  }
- timerStart();
 
  function restartGame() {
      location.reload();
  }
 
  function showHideRules() {
-     var gameRules = document.getElementById("game-rules-to-hide")
+     var gameRules = document.getElementById("game-rules-to-hide");
+     var main = document.querySelector("main");
      if (gameRules.style.display === "none") {
          gameRules.style.display = "block";
      } else {
          gameRules.style.display = "none";
      }
  }
-
-
