@@ -1,10 +1,3 @@
-/*******************
-    COLOR PALETTE
-brown board: #C6BEA7;
-red: #EC6C5B;
-pink: #FABCAD;
-*******************/
-
 /******************
     GENERAL
 ******************/
@@ -20,13 +13,13 @@ body {
 main {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .right {
-    width: 500px;
-    height: 500px;
-    margin: 0 2%;
+    width: 300px;
+    height: 300px;
+    margin: 0;
 }
 
 /*******************
@@ -36,8 +29,8 @@ main {
 table {
     background-color: #c6bea7;
     background-image: url("https://www.transparenttextures.com/patterns/billie-holiday.png");
-    width: 750px;
-    height: 750px;
+    width: 700px;
+    height: 700px;
     margin: 0 auto;
     border-collapse: collapse;
     box-shadow: 0px 0px 5px 4px rgba(136, 136, 136, 0.8);
@@ -63,8 +56,7 @@ td {
 }
 
 .timer,
-.score-board,
-.game-rules {
+.score-board {
     font-weight: bold;
     border-radius: 20px;
     text-align: center;
@@ -83,7 +75,7 @@ td {
     width: 180px;
     height: 80px;
     line-height: 80px;
-    margin: 10px auto;
+    margin: 0 auto;
 }
 
 .score-board {
@@ -91,15 +83,6 @@ td {
     height: 110px;
     margin: 10px auto;
     padding: 10px 0;
-    display: none;
-}
-
-.game-rules {
-    width: 250px;
-    height: 45px;
-    padding: 5px 0;
-    margin: 50px auto 0 auto;
-    cursor: pointer;
 }
 
 .bold,
@@ -111,11 +94,46 @@ li {
     line-height: 30px;
 }
 
-ol {
-    border: 2px solid black;
+.game-rules {
+    box-shadow: 0px 0px 5px 4px rgba(136, 136, 136, 0.8);
     border-radius: 5px;
-    padding-right: 10px;
+    padding: 20px 20px 20px 40px;
+    background-color: #E0D3AF;
+    background-image: url("https://www.transparenttextures.com/patterns/billie-holiday.png");
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    display: none;
+
+
 }
+
+ol {
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+}
+
+.cloud {
+    height: 80px;
+    width: 120px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
+}
+
+.cloud:hover {
+    right: 25px;
+    bottom: 25px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 
 /*****************
     LETTERS
@@ -125,7 +143,8 @@ ol {
     width: 400px;
     height: 60px;
     margin: 20px auto;
-    background: #C6BEA7;
+    background-color: #E0D3AF;
+    background-image: url("https://www.transparenttextures.com/patterns/billie-holiday.png");
     box-shadow: 0px 0px 5px 4px rgba(136, 136, 136, 0.8);
     border-radius: 5px;
     position: relative;
@@ -167,6 +186,7 @@ sub {
 
 .buttons {
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .button {
@@ -180,29 +200,33 @@ sub {
     margin: 0 15px;
 }
 
-.button:last-child {
-    background-color: #136e40;
+.new-game-button {
+    background-color: #2a573b;
+    position: absolute;
+    top: 10px;
+    right: 0;
 }
 
 .icon {
     font-size: 40px;
-    padding: 15px 30px;
+    padding: 10px 30px;
 }
 
-.button:active,
-.game-rules:active {
+.button:active {
     position: relative;
     bottom: 5px;
 }
 
-.button:hover,
-.game-rules:hover {
+.button:hover {
     background-color: #822f33;
 }
 
-.button:last-child:hover {
-    background-color: #0d4a2b;
+.new-game-button:hover,
+    {
+    background-color: #1E3C29;
 }
+
+
 
 /**************************
     LETTERS ON BOARD STYLES
@@ -223,8 +247,10 @@ sub {
     color: #292823;
     background-image: url(../IMG/wood-letter.png);
     background-size: cover;
-    font-size: 2em;
+    font-size: 35px;
+    cursor: pointer;
 }
+
 
 /*********************
     MEDIA QUERIES
@@ -249,7 +275,7 @@ sub {
     .letter-holder {
         width: 280px;
         height: 40px;
-        margin: 15px auto;
+        margin: 15px auto 10px auto;
     }
 
     .letter {
@@ -275,7 +301,7 @@ sub {
 
     .icon {
         font-size: 30px;
-        padding: 10px 20px;
+        padding: 5px 20px;
     }
 
     .button {
@@ -285,26 +311,30 @@ sub {
 
     .timer,
     .score-board {
-        font-size: 20px;
+        font-size: 30px;
     }
 
     .timer {
-        width: 150px;
-        height: 50px;
-        line-height: 50px;
+        width: 200px;
+        height: 70px;
+        line-height: 65px;
     }
 
     .score-board {
-        width: 150px;
-        height: 70px;
+        width: 200px;
+        height: 110px;
         margin: 10px auto;
     }
 
     .game-rules {
-        width: 150px;
-        height: 32px;
-        font-size: 15px;
-        margin: 30px auto 0 auto;
+        width: 70%;
+        height: 70%;
+    }
+
+    ol {
+        width: 50%;
+        height: 50%;
+        margin: 0 auto;
     }
 
     li {
@@ -372,6 +402,10 @@ sub {
         margin: 0 10px;
     }
 
+    .new-game-button {
+        position: static;
+    }
+
     .timer,
     .score-board {
         font-size: 16px;
@@ -390,18 +424,19 @@ sub {
     }
 
     .game-rules {
-        width: 130px;
-        height: 26px;
-        font-size: 13px;
-        margin: 30px auto 0 auto;
+        width: 90%;
+        height: 90%;
     }
 
     li {
-        line-height: 25px;
+        line-height: 20px;
         font-size: 14px;
     }
 
     ol {
-        padding-right: 10px;
+        width: 90%;
+        height: 200px;
+        margin-left: 10px;
+        padding: 0;
     }
 }
