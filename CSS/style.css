@@ -224,8 +224,6 @@ sub {
     background-color: #1E3C29;
 }
 
-
-
 /**************************
     LETTERS ON BOARD STYLES
 **************************/
@@ -248,7 +246,6 @@ sub {
     font-size: 35px;
     cursor: pointer;
 }
-
 
 /*********************
     MEDIA QUERIES
@@ -440,10 +437,6 @@ sub {
 
     .cloud {
         height: 40px;
-        width: 80px;
-        position: absolute;
-        bottom: 15px;
-        right: 15px;
-        filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
+        width: 60px;
     }
 }
