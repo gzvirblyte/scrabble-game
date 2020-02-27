@@ -199,6 +199,13 @@ sub {
 }
 
 .new-game-button {
+    border-radius: 5px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0 15px;
     background-color: #2a573b;
     position: absolute;
     top: 10px;
@@ -219,10 +226,14 @@ sub {
     background-color: #822f33;
 }
 
-.new-game-button:hover,
-    {
+.new-game-button:hover {
     background-color: #1E3C29;
 }
+
+.new-game-button:active {
+    top: 15px;
+}
+
 
 /**************************
     LETTERS ON BOARD STYLES
@@ -299,7 +310,7 @@ sub {
         padding: 5px 20px;
     }
 
-    .button {
+    .button, .new-game-button {
         font-size: 10px;
         margin: 0 10px;
     }
@@ -392,7 +403,7 @@ sub {
         padding: 6px 20px;
     }
 
-    .button {
+    .button, .new-game-button {
         font-size: 8px;
         margin: 0 10px;
     }
